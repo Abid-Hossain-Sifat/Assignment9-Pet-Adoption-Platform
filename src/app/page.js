@@ -1,7 +1,7 @@
 import Hero from "@/Components/Hero";
 import Process from "@/Components/Process";
 import WhyAdopt from "@/Components/WhyAdopt";
-import Image from "next/image";
+import Review from "@/Components/Review";
 
 export default function Home() {
   return (
@@ -9,6 +9,7 @@ export default function Home() {
       <Hero></Hero>
       <WhyAdopt />
       <Process />
+      <Review />
     </div>
   );
 }
