@@ -2,20 +2,16 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { FaArrowRightToBracket } from 'react-icons/fa6'
-import Navlogo from '../../public/Assets/NavLogo.png'
+import { PawPrint } from 'lucide-react'
 
 const Navbar = () => {
   return (
     <div className='shadow-sm'>
       <div className='flex justify-between max-w-[80%] mx-auto items-center p-3'>
-        <div className='flex gap items-center'>
-          <Image
-            src={Navlogo}
-            alt='NavbarLogo'
-            height={40}
-            className='mt-1'
-            
-          ></Image>
+        <div className='flex gap-2 items-center'>
+          <div className='p-2 bg-[#00685f] rounded-xl'>
+            <PawPrint className='text-white w-6 h-6' />
+          </div>
           <h1 className='text-3xl font-bold text-[#00685f]'>PawsConnect</h1>
         </div>
         <div className='flex gap-10'>
