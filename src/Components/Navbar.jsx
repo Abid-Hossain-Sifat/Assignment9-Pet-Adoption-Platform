@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { FaArrowRightToBracket } from 'react-icons/fa6'
@@ -18,13 +17,13 @@ const Navbar = () => {
           <Link href='/'>
             Home
           </Link>
-          <Link href='#'>
+          <Link href='/all-pets'>
             All Pets
           </Link>
-          <Link href='#'>
+          <Link href='/request'>
             My Request
           </Link>
-          <Link href='#'>
+          <Link href='/add-pets'>
             Add Pet
           </Link>
         </div>
