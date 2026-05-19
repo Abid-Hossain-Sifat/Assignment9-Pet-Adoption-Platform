@@ -41,7 +41,6 @@ const DashListPage = () => {
   const [deletingId, setDeletingId] = useState(null);
   const [updatingId, setUpdatingId] = useState(null);
 
-  // Modal States
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [petToDelete, setPetToDelete] = useState(null);
 
@@ -51,20 +50,17 @@ const DashListPage = () => {
 
   const [showUpdateConfirmModal, setShowUpdateConfirmModal] = useState(false);
 
-  // Adoption Requests Modal States
   const [showRequestsModal, setShowRequestsModal] = useState(false);
   const [selectedPetForRequests, setSelectedPetForRequests] = useState(null);
   const [petRequests, setPetRequests] = useState([]);
   const [loadingRequests, setLoadingRequests] = useState(false);
 
-  // Approve & Reject Confirm Modals
   const [showApproveConfirmModal, setShowApproveConfirmModal] = useState(false);
   const [requestToApprove, setRequestToApprove] = useState(null);
   
   const [showRejectConfirmModal, setShowRejectConfirmModal] = useState(false);
   const [requestToReject, setRequestToReject] = useState(null);
 
-  // Delete Request Confirm Modals
   const [showRequestDeleteConfirm, setShowRequestDeleteConfirm] = useState(false);
   const [requestToDelete, setRequestToDelete] = useState(null);
 
@@ -92,13 +88,11 @@ const DashListPage = () => {
     }
   }, [session, sessionPending]);
 
-  // Open delete confirmation modal
   const triggerDelete = (pet) => {
     setPetToDelete(pet);
     setShowDeleteModal(true);
   };
 
-  // Perform delete in MongoDB
   const confirmDelete = async () => {
     if (!petToDelete) return;
     
@@ -127,14 +121,12 @@ const DashListPage = () => {
     }
   };
 
-  // Open edit modal and load form data
   const triggerEdit = (pet) => {
     setPetToEdit(pet);
     setEditFormData({ ...pet });
     setShowEditModal(true);
   };
 
-  // Handle edit form inputs
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setEditFormData({
@@ -143,13 +135,11 @@ const DashListPage = () => {
     });
   };
 
-  // Trigger update confirmation modal
   const handleEditSubmit = (e) => {
     e.preventDefault();
     setShowUpdateConfirmModal(true);
   };
 
-  // Perform update in MongoDB
   const confirmUpdate = async () => {
     if (!petToEdit || !editFormData) return;
     
@@ -170,7 +160,6 @@ const DashListPage = () => {
       });
 
       if (response.ok) {
-        // Update client state instantly
         setPets(pets.map((pet) => (pet._id === id ? { ...pet, ...editFormData } : pet)));
       } else {
         alert("Failed to update the listing.");
@@ -184,7 +173,6 @@ const DashListPage = () => {
     }
   };
 
-  // Trigger Adoption Requests Modal for clicked Card
   const triggerRequestsModal = async (pet) => {
     setSelectedPetForRequests(pet);
     setShowRequestsModal(true);
@@ -205,13 +193,11 @@ const DashListPage = () => {
     }
   };
 
-  // Trigger Approve Request Confirm Modal
   const triggerApproveRequest = (request) => {
     setRequestToApprove(request);
     setShowApproveConfirmModal(true);
   };
 
-  // Perform Request Approval in MongoDB
   const confirmApproveRequest = async () => {
     if (!requestToApprove) return;
     
@@ -227,20 +213,15 @@ const DashListPage = () => {
       });
 
       if (response.ok) {
-        // Local UI State updates:
-        // 1. Mark this request as approved, others for this pet as rejected
         setPetRequests(petRequests.map((req) => {
           if (req._id === id) return { ...req, status: 'approved' };
           return { ...req, status: 'rejected' };
         }));
         
-        // 2. Mark this pet as 'Adopted' in local listings state
         setPets(pets.map((pet) => {
           if (pet._id === selectedPetForRequests._id) return { ...pet, status: 'Adopted' };
           return pet;
         }));
-        
-        // 3. Update currently selected pet's status representation
         setSelectedPetForRequests({ ...selectedPetForRequests, status: 'Adopted' });
       } else {
         alert("Failed to approve adoption request.");
@@ -254,13 +235,11 @@ const DashListPage = () => {
     }
   };
 
-  // Trigger Reject Request Confirm Modal
   const triggerRejectRequest = (request) => {
     setRequestToReject(request);
     setShowRejectConfirmModal(true);
   };
 
-  // Perform Request Rejection in MongoDB
   const confirmRejectRequest = async () => {
     if (!requestToReject) return;
     
@@ -276,7 +255,6 @@ const DashListPage = () => {
       });
 
       if (response.ok) {
-        // Mark request as rejected locally
         setPetRequests(petRequests.map((req) => (req._id === id ? { ...req, status: 'rejected' } : req)));
       } else {
         alert("Failed to reject request.");
@@ -290,13 +268,11 @@ const DashListPage = () => {
     }
   };
 
-  // Trigger Delete Request Confirmation Modal
   const triggerDeleteRequest = (request) => {
     setRequestToDelete(request);
     setShowRequestDeleteConfirm(true);
   };
 
-  // Perform Request Deletion in MongoDB
   const confirmDeleteRequest = async () => {
     if (!requestToDelete) return;
     
@@ -312,7 +288,6 @@ const DashListPage = () => {
       });
 
       if (response.ok) {
-        // Filter out deleted request locally
         setPetRequests(petRequests.filter((req) => req._id !== id));
       } else {
         alert("Failed to delete adoption request.");
@@ -341,7 +316,6 @@ const DashListPage = () => {
           </div>
         </div>
 
-        {/* Skeleton Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[1, 2, 3].map((n) => (
             <div key={n} className="bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-xs animate-pulse">
@@ -438,7 +412,6 @@ const DashListPage = () => {
                   }}
                 />
                 
-                {/* Status Badge */}
                 <span className={`absolute top-3 right-3 px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider shadow-sm z-10 
                   ${pet.status === "Available" ? "bg-teal-50 text-teal-700 border border-teal-200/50" : 
                     pet.status === "Pending" ? "bg-amber-50 text-amber-700 border border-amber-200/50" : 
@@ -448,7 +421,6 @@ const DashListPage = () => {
                 </span>
               </div>
 
-              {/* Content */}
               <div className="p-5 flex-1 flex flex-col justify-between">
                 <div>
                   <span className="text-[10px] font-bold text-teal-600 uppercase tracking-widest block mb-1">
@@ -484,7 +456,6 @@ const DashListPage = () => {
                   </div>
 
                   <div className="flex gap-2">
-                    {/* Edit Button */}
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
@@ -501,7 +472,6 @@ const DashListPage = () => {
                       )}
                     </button>
 
-                    {/* Delete Button */}
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
@@ -525,7 +495,6 @@ const DashListPage = () => {
         </div>
       )}
 
-      {/* ==================== 🗑️ CUSTOM DELETE MODAL ==================== */}
       {showDeleteModal && (
         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 z-50 animate-fadeIn">
           <div className="bg-white rounded-3xl p-6 max-w-sm w-full shadow-xl border border-gray-100 flex flex-col items-center text-center">
@@ -559,7 +528,6 @@ const DashListPage = () => {
         </div>
       )}
 
-      {/* ==================== 📝 CUSTOM EDIT MODAL ==================== */}
       {showEditModal && (
         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 z-50 animate-fadeIn">
           <div className="bg-white rounded-3xl p-6 max-w-2xl w-full max-h-[85vh] overflow-y-auto shadow-xl border border-gray-100 relative">
@@ -818,7 +786,6 @@ const DashListPage = () => {
         </div>
       )}
 
-      {/* ==================== ❓ CUSTOM UPDATE CONFIRMATION MODAL ==================== */}
       {showUpdateConfirmModal && (
         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 z-50 animate-fadeIn animate-scaleUp">
           <div className="bg-white rounded-3xl p-6 max-w-sm w-full shadow-xl border border-gray-100 flex flex-col items-center text-center">
@@ -849,7 +816,6 @@ const DashListPage = () => {
         </div>
       )}
 
-      {/* ==================== 📬 ADOPTION REQUESTS MODAL (CLICK ON CARD) ==================== */}
       {showRequestsModal && (
         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 z-40 animate-fadeIn">
           <div className="bg-white rounded-3xl p-6 max-w-2xl w-full max-h-[85vh] overflow-y-auto shadow-xl border border-gray-100 relative">
@@ -922,8 +888,8 @@ const DashListPage = () => {
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2 text-xs text-slate-600">
                           <p className="flex items-center gap-1.5">
-                            <Phone size={14} className="text-[#00685f]" />
-                            <span>Phone: <strong>{request.requesterPhone}</strong></span>
+                            <Calendar size={14} className="text-[#00685f]" />
+                            <span>Pickup Date: <strong>{request.pickupDate || 'Not specified'}</strong></span>
                           </p>
                           <p className="flex items-center gap-1.5">
                             <Clock size={14} className="text-[#00685f]" />
@@ -948,7 +914,6 @@ const DashListPage = () => {
                         </div>
                       </div>
 
-                      {/* Request Action Buttons */}
                       {request.status === 'pending' && (
                         <div className="flex sm:flex-col gap-2 self-end sm:self-start w-full sm:w-auto">
                           <button
@@ -986,7 +951,6 @@ const DashListPage = () => {
         </div>
       )}
 
-      {/* ==================== ❓ CUSTOM APPROVE CONFIRMATION MODAL ==================== */}
       {showApproveConfirmModal && (
         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 z-50 animate-fadeIn animate-scaleUp">
           <div className="bg-white rounded-3xl p-6 max-w-sm w-full shadow-xl border border-gray-100 flex flex-col items-center text-center">
@@ -1024,7 +988,6 @@ const DashListPage = () => {
         </div>
       )}
 
-      {/* ==================== ❌ CUSTOM REJECT CONFIRMATION MODAL ==================== */}
       {showRejectConfirmModal && (
         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 z-50 animate-fadeIn animate-scaleUp">
           <div className="bg-white rounded-3xl p-6 max-w-sm w-full shadow-xl border border-gray-100 flex flex-col items-center text-center">
@@ -1058,7 +1021,6 @@ const DashListPage = () => {
         </div>
       )}
 
-      {/* ==================== 🗑️ CUSTOM REQUEST DELETE CONFIRMATION MODAL ==================== */}
       {showRequestDeleteConfirm && (
         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 z-50 animate-fadeIn animate-scaleUp">
           <div className="bg-white rounded-3xl p-6 max-w-sm w-full shadow-xl border border-gray-100 flex flex-col items-center text-center">

@@ -64,11 +64,9 @@ const AllPetsPage = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 animate-fadeIn">
           {pets && pets.map((pet, index) => {
-            // Find if this user has already requested to adopt this pet
             const userRequest = userRequests.find((req) => req.petId === pet._id);
             const isOwner = session?.user?.email && (session.user.email === pet.email || session.user.email === pet.ownerEmail);
             
-            // Display status as 'Pending' if the current user has applied, unless pet is Adopted
             const displayStatus = isOwner ? (pet.status || 'Available') : (userRequest ? (userRequest.status === 'approved' ? 'Adopted' : (userRequest.status === 'rejected' ? 'Rejected' : 'Pending')) : (pet.status || 'Available'));
             const isPendingStatus = displayStatus.toLowerCase() === 'pending';
             const isAdoptedStatus = displayStatus.toLowerCase() === 'adopted';
