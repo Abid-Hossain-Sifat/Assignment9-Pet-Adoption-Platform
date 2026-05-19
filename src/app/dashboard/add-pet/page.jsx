@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import {
   PlusCircle,
   Tag,
@@ -14,11 +15,80 @@ import {
   FileText,
   Mail,
   Activity,
+  AlertCircle,
 } from "lucide-react";
 
 const DashAddPage = () => {
+  const [toast, setToast] = useState({ show: false, message: "", type: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const showToastMessage = (message, type = "error") => {
+    setToast({ show: true, message, type });
+    setTimeout(() => {
+      setToast({ show: false, message: "", type: "" });
+    }, 3000);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const form = e.target;
+    const petData = {
+      name: form.name.value,
+      species: form.species.value,
+      breed: form.breed.value,
+      age: form.age.value,
+      gender: form.gender.value,
+      image: form.image.value,
+      healthStatus: form.healthStatus.value,
+      vaccinationStatus: form.vaccinationStatus.value,
+      location: form.location.value,
+      adoptionFee: parseFloat(form.adoptionFee.value) || 0,
+      email: form.email.value,
+      status: form.status.value,
+      description: form.description.value,
+    };
+
+    try {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:2006/pets";
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(petData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.insertedId) {
+        showToastMessage("Pet successfully listed for adoption!", "success");
+        form.reset();
+      } else {
+        showToastMessage(data.message || "Failed to publish pet listing.", "error");
+      }
+    } catch (error) {
+      console.error("Error submitting pet data:", error);
+      showToastMessage("Failed to connect to the server.", "error");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
-    <div className="bg-white border border-gray-100 rounded-3xl p-8 shadow-xs">
+    <div className="bg-white border border-gray-100 rounded-3xl p-8 shadow-xs relative">
+      {/* === TOAST NOTIFICATION === */}
+      {toast.show && (
+        <div className="toast toast-top toast-end z-50 fixed top-4 right-4 animate-bounce">
+          <div
+            className={`alert ${toast.type === "success" ? "alert-success bg-teal-600 text-white" : "alert-error bg-rose-600 text-white"} shadow-lg rounded-xl flex items-center gap-2 p-4`}
+          >
+            {toast.type === "error" && <AlertCircle className="w-5 h-5" />}
+            <span className="text-sm font-bold">{toast.message}</span>
+          </div>
+        </div>
+      )}
       <div className="flex items-center gap-3 border-b border-gray-100 pb-5 mb-8">
         <div className="h-10 w-10 bg-[#00685f]/10 text-[#00685f] rounded-xl flex items-center justify-center">
           <PlusCircle size={22} />
@@ -33,7 +103,7 @@ const DashAddPage = () => {
         </div>
       </div>
 
-      <form className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label className="block text-xs font-bold text-slate-700 uppercase mb-2">
@@ -45,6 +115,7 @@ const DashAddPage = () => {
               </span>
               <input
                 type="text"
+                name="name"
                 placeholder="e.g., Buddy, Milo"
                 required
                 className="w-full bg-gray-50/50 border border-gray-200 rounded-xl py-3 pl-11 pr-4 text-sm outline-none focus:border-[#00685f] focus:bg-white transition-all"
@@ -62,6 +133,7 @@ const DashAddPage = () => {
               </span>
               <select
                 required
+                name="species"
                 className="w-full bg-gray-50/50 border border-gray-200 rounded-xl py-3 pl-11 pr-4 text-sm outline-none focus:border-[#00685f] focus:bg-white transition-all appearance-none"
               >
                 <option value="">Select Species</option>
@@ -84,6 +156,7 @@ const DashAddPage = () => {
               </span>
               <input
                 type="text"
+                name="breed"
                 placeholder="e.g., Golden Retriever, Persian"
                 required
                 className="w-full bg-gray-50/50 border border-gray-200 rounded-xl py-3 pl-11 pr-4 text-sm outline-none focus:border-[#00685f] focus:bg-white transition-all"
@@ -101,6 +174,7 @@ const DashAddPage = () => {
               </span>
               <input
                 type="text"
+                name="age"
                 placeholder="e.g., 2 Months, 1 Year"
                 required
                 className="w-full bg-gray-50/50 border border-gray-200 rounded-xl py-3 pl-11 pr-4 text-sm outline-none focus:border-[#00685f] focus:bg-white transition-all"
@@ -118,6 +192,7 @@ const DashAddPage = () => {
               </span>
               <select
                 required
+                name="gender"
                 className="w-full bg-gray-50/50 border border-gray-200 rounded-xl py-3 pl-11 pr-4 text-sm outline-none focus:border-[#00685f] focus:bg-white transition-all appearance-none"
               >
                 <option value="">Select Gender</option>
@@ -137,6 +212,7 @@ const DashAddPage = () => {
               </span>
               <input
                 type="url"
+                name="image"
                 placeholder="https://example.com/pet-image.jpg"
                 required
                 className="w-full bg-gray-50/50 border border-gray-200 rounded-xl py-3 pl-11 pr-4 text-sm outline-none focus:border-[#00685f] focus:bg-white transition-all"
@@ -154,6 +230,7 @@ const DashAddPage = () => {
               </span>
               <input
                 type="text"
+                name="healthStatus"
                 placeholder="e.g., Healthy, Undergoing Treatment"
                 required
                 className="w-full bg-gray-50/50 border border-gray-200 rounded-xl py-3 pl-11 pr-4 text-sm outline-none focus:border-[#00685f] focus:bg-white transition-all"
@@ -171,6 +248,7 @@ const DashAddPage = () => {
               </span>
               <select
                 required
+                name="vaccinationStatus"
                 className="w-full bg-gray-50/50 border border-gray-200 rounded-xl py-3 pl-11 pr-4 text-sm outline-none focus:border-[#00685f] focus:bg-white transition-all appearance-none"
               >
                 <option value="Vaccinated">Vaccinated</option>
@@ -192,6 +270,7 @@ const DashAddPage = () => {
               </span>
               <input
                 type="text"
+                name="location"
                 placeholder="e.g., Dhanmondi, Dhaka"
                 required
                 className="w-full bg-gray-50/50 border border-gray-200 rounded-xl py-3 pl-11 pr-4 text-sm outline-none focus:border-[#00685f] focus:bg-white transition-all"
@@ -209,6 +288,7 @@ const DashAddPage = () => {
               </span>
               <input
                 type="number"
+                name="adoptionFee"
                 placeholder="0 for Free Adoption"
                 required
                 min="0"
@@ -227,6 +307,7 @@ const DashAddPage = () => {
               </span>
               <input
                 type="email"
+                name="email"
                 placeholder="shelter@example.com"
                 required
                 className="w-full bg-gray-50/50 border border-gray-200 rounded-xl py-3 pl-11 pr-4 text-sm outline-none focus:border-[#00685f] focus:bg-white transition-all"
@@ -244,6 +325,7 @@ const DashAddPage = () => {
               </span>
               <select
                 required
+                name="status"
                 className="w-full bg-gray-50/50 border border-gray-200 rounded-xl py-3 pl-11 pr-4 text-sm outline-none focus:border-[#00685f] focus:bg-white transition-all appearance-none"
               >
                 <option value="Available">Available</option>
@@ -266,6 +348,7 @@ const DashAddPage = () => {
               rows="5"
               placeholder="Write something about the pet's behavior, nature, habits, and why someone should adopt it..."
               required
+              name="description"
               className="w-full bg-gray-50/50 border border-gray-200 rounded-xl py-3 pl-11 pr-4 text-sm outline-none focus:border-[#00685f] focus:bg-white transition-all resize-none"
             ></textarea>
           </div>
@@ -274,10 +357,11 @@ const DashAddPage = () => {
         <div className="flex justify-end pt-4">
           <button
             type="submit"
-            className="bg-[#00685f] hover:bg-[#005049] text-white font-semibold px-8 py-3.5 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-2 text-sm"
+            disabled={isSubmitting}
+            className={`bg-[#00685f] hover:bg-[#005049] text-white font-semibold px-8 py-3.5 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-2 text-sm ${isSubmitting ? "opacity-75 cursor-not-allowed" : ""}`}
           >
             <PlusCircle size={18} />
-            Publish Pet Listing
+            {isSubmitting ? "Publishing..." : "Publish Pet Listing"}
           </button>
         </div>
       </form>
