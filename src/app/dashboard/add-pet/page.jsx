@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { authClient } from "@/lib/auth-client";
 import {
   PlusCircle,
   Tag,
@@ -19,6 +20,7 @@ import {
 } from "lucide-react";
 
 const DashAddPage = () => {
+  const { data: session } = authClient.useSession();
   const [toast, setToast] = useState({ show: false, message: "", type: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -308,9 +310,11 @@ const DashAddPage = () => {
               <input
                 type="email"
                 name="email"
+                value={session?.user?.email || ""}
+                readOnly
                 placeholder="shelter@example.com"
                 required
-                className="w-full bg-gray-50/50 border border-gray-200 rounded-xl py-3 pl-11 pr-4 text-sm outline-none focus:border-[#00685f] focus:bg-white transition-all"
+                className="w-full bg-gray-100 border border-gray-200 rounded-xl py-3 pl-11 pr-4 text-sm outline-none cursor-not-allowed select-none text-slate-500 font-medium"
               />
             </div>
           </div>
