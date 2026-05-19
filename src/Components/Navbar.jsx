@@ -4,10 +4,15 @@ import React from 'react';
 import { FaArrowRightToBracket } from 'react-icons/fa6';
 import { PawPrint, LogOut, LayoutDashboard } from 'lucide-react';
 import { authClient } from '@/lib/auth-client';
+import { usePathname } from 'next/navigation';
 
 const Navbar = () => {
+  const pathname = usePathname();
+
   // Use session from Better Auth
   const { data: session, isPending } = authClient.useSession();
+
+  if (pathname?.startsWith('/dashboard')) return null;
 
   const handleLogout = async () => {
     await authClient.signOut({

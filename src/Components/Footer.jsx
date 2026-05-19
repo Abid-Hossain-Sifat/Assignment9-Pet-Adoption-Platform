@@ -1,10 +1,16 @@
+"use client";
 import React from "react";
+import { usePathname } from 'next/navigation';
 import { FaGithub } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa6";
 import { FaFacebook } from "react-icons/fa6";
 import { PawPrint } from "lucide-react";
 
 const Footer = () => {
+  const pathname = usePathname();
+
+  if (pathname?.startsWith('/dashboard')) return null;
+
   return (
     <footer className="bg-[#dee4e1] text-slate-700 pt-16 pb-8 border-t border-slate-300/40">
       <div className="max-w-[80%] mx-auto flex flex-col gap-12">
