@@ -1,5 +1,6 @@
 import React from 'react';
 import { allPets } from '../../lib/data'; 
+import Link from 'next/link';
 
 const AllPetsPage = async () => {
   const pets = await allPets();
@@ -45,13 +46,15 @@ const AllPetsPage = async () => {
                   <p><strong className="text-slate-900">Age:</strong> {pet.age}</p>
                   <p><strong className="text-slate-900">Gender:</strong> {pet.gender}</p>
                   <p className="truncate"><strong className="text-slate-900">📍 Location:</strong> {pet.location}</p>
-                  <p className="text-[#00685f] font-bold pt-2">Fee: ${pet.adoptionFee || '0'}</p>
+                  <p className="text-[#00685f] font-bold pt-2">Fee: ৳{pet.adoptionFee || '0'}</p>
                 </div>
 
                 <div className="mt-auto">
-                  <button className="w-full bg-[#00685f] hover:bg-[#005049] text-white font-semibold py-3 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg">
+                  <Link href= {`/all-pets/${pet._id}`}>
+                    <button className="w-full bg-[#00685f] hover:bg-[#005049] text-white font-semibold py-3 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg">
                     View Details
                   </button>
+                  </Link>
                 </div>
               </div>
 

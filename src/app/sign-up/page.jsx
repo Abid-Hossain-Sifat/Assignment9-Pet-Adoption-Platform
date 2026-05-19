@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react"; 
 import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
 import {
   PawPrint,
   User,
@@ -35,7 +36,7 @@ const Register = () => {
   };
 
   // প্লেইন জাভাস্ক্রিপ্ট সাবমিট হ্যান্ডলার (টাইপস্ক্রিপ্ট ডাটা টাইপ বাদ দেওয়া হয়েছে)
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // chck pass
@@ -44,10 +45,26 @@ const Register = () => {
       return; 
     }
 
-    // api call
-    setError("");
-    alert("Registration Successful!"); 
-    console.log("Form Data:", formData);
+    try {
+      // api call using better-auth
+      const { data, error: authError } = await authClient.signUp.email({
+        email: formData.email,
+        password: formData.password,
+        name: formData.name,
+        image: formData.photoUrl // Better Auth uses image instead of photoUrl by default
+      });
+
+      if (authError) {
+        setError(authError.message || "Registration failed. Please try again.");
+        return;
+      }
+
+      setError("");
+      alert("Registration Successful!"); 
+      window.location.href = "/log-in"; // Redirect to login page
+    } catch (err) {
+      setError("An unexpected error occurred. Please try again.");
+    }
   };
 
   return (

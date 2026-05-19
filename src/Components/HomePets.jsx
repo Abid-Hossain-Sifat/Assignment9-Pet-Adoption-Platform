@@ -84,9 +84,11 @@ const HomePets = async () => {
                     {pet.breed || pet.species} • {pet.location}
                   </p>
 
-                  <button className="w-full bg-white hover:bg-[#00685f] hover:text-white hover:border-[#00685f] text-slate-800 font-semibold py-2.5 border border-gray-300 rounded-xl transition-all duration-300 text-sm shadow-xs">
+                  <Link href={`/all-pets/${pet._id}`}>
+                    <button className="w-full bg-white hover:bg-[#00685f] hover:text-white hover:border-[#00685f] text-slate-800 font-semibold py-2.5 border border-gray-300 rounded-xl transition-all duration-300 text-sm shadow-xs">
                     View Details
                   </button>
+                  </Link>
                 </div>
               </div>
             );

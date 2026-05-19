@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { PawPrint, Mail, Lock, Eye, EyeOff, AlertCircle } from "lucide-react";
+import { authClient } from "@/lib/auth-client";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -26,23 +27,40 @@ const Login = () => {
     }, 3000);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (formData.email === "test@gmail.com" && formData.password === "123456") {
-      showToastMessage("Login Successful! Redirecting...", "success");
+    try {
+      const { data, error } = await authClient.signIn.email({
+        email: formData.email,
+        password: formData.password,
+      });
 
+      if (error) {
+        showToastMessage(error.message || "Invalid email or password. Please try again.", "error");
+        return;
+      }
+
+      showToastMessage("Login Successful! Redirecting...", "success");
       setTimeout(() => {
         window.location.href = "/";
       }, 1500);
-    } else {
-      showToastMessage("Invalid email or password. Please try again.", "error");
+
+    } catch (err) {
+      showToastMessage("An unexpected error occurred.", "error");
     }
   };
 
-  const handleGoogleLogin = () => {
-    showToastMessage("Connecting with Google...", "success");
-    console.log("Google Login Initiated");
+  const handleGoogleLogin = async () => {
+    try {
+      showToastMessage("Connecting with Google...", "success");
+      await authClient.signIn.social({
+        provider: "google",
+        callbackURL: "http://localhost:3000/"
+      });
+    } catch (err) {
+      showToastMessage("Google login failed.", "error");
+    }
   };
 
   return (
