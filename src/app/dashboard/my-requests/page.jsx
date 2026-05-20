@@ -253,7 +253,7 @@ const DashReqPage = () => {
                       <button
                         onClick={() => triggerDeleteRequest(request)}
                         disabled={deletingId === request._id}
-                        className="py-2.5 px-4 bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-100 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 focus:outline-none shadow-xs flex-1 sm:w-full md:w-auto"
+                        className="py-2.5 px-4 bg-rose-50 cursor-pointer hover:bg-rose-100 text-rose-600 border border-rose-100 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 focus:outline-none shadow-xs flex-1 sm:w-full md:w-auto"
                       >
                         {deletingId === request._id ? (
                           <Loader2 size={14} className="animate-spin" />
@@ -292,13 +292,13 @@ const DashReqPage = () => {
                   setShowDeleteConfirm(false);
                   setSelectedRequestForDelete(null);
                 }}
-                className="w-full sm:flex-1 py-3 px-4 border border-gray-200 text-slate-600 font-bold rounded-xl text-xs sm:text-sm hover:bg-slate-50 transition-colors order-2 sm:order-1"
+                className="w-full sm:flex-1 py-3 px-4 border cursor-pointer border-gray-200 text-slate-600 font-bold rounded-xl text-xs sm:text-sm hover:bg-slate-50 transition-colors order-2 sm:order-1"
               >
                 No, Cancel
               </button>
               <button
                 onClick={confirmDeleteRequest}
-                className="w-full sm:flex-1 py-3 px-4 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl text-xs sm:text-sm transition-colors shadow-md hover:shadow-lg order-1 sm:order-2"
+                className="w-full sm:flex-1 py-3 px-4 bg-rose-600 cursor-pointer hover:bg-rose-700 text-white font-bold rounded-xl text-xs sm:text-sm transition-colors shadow-md hover:shadow-lg order-1 sm:order-2"
               >
                 Yes, Delete
               </button>

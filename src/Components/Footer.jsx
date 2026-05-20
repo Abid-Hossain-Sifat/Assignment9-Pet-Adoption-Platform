@@ -10,7 +10,7 @@ const Footer = () => {
   if (pathname?.startsWith('/dashboard')) return null;
 
   return (
-    <footer className="bg-[#dee4e1] text-slate-700 pt-12 md:pt-16 pb-8 border-t border-slate-300/40">
+    <footer className="bg-[#dee4e1] text-slate-700 pt-12 md:pt-16 pb-8 border-t border-slate-300/40 animate__animated animate__fadeInUp">
       <div className="w-full max-w-[90%] md:max-w-[80%] mx-auto flex flex-col gap-10 md:gap-12 px-2 sm:px-4 md:px-0">
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-row lg:justify-between gap-8 md:gap-10 lg:gap-4 items-start w-full">

@@ -41,7 +41,7 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="sticky top-0 bg-white z-50 shadow-sm">
+    <div className="sticky top-0 bg-white z-50 shadow-sm animate__animated animate__fadeInDown">
       <div className="flex justify-between items-center p-3 w-full lg:max-w-[80%] mx-auto px-4 lg:px-0">
         <div className="flex gap-2 items-center">
           <div className="p-2 bg-[#00685f] rounded-xl">
@@ -138,7 +138,7 @@ const Navbar = () => {
       </div>
 
       {isOpen && (
-        <div className="lg:hidden bg-white border-t border-slate-100 absolute top-full left-0 w-full shadow-md transition-all duration-300 ease-in-out">
+        <div className="lg:hidden bg-white border-t border-slate-100 absolute top-full left-0 w-full shadow-md transition-all duration-300 ease-in-out animate__animated animate__fadeInDown">
           <div className="flex flex-col p-4 gap-4">
             {navLinks.map((link) => (
               <Link

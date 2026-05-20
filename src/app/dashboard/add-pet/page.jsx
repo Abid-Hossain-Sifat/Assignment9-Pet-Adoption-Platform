@@ -363,7 +363,7 @@ const DashAddPage = () => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`w-full sm:w-auto bg-[#00685f] hover:bg-[#005049] text-white font-semibold px-8 py-3.5 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2 text-sm ${isSubmitting ? "opacity-75 cursor-not-allowed" : ""}`}
+            className={`w-full sm:w-auto bg-[#00685f] cursor-pointer hover:bg-[#005049] text-white font-semibold px-8 py-3.5 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2 text-sm ${isSubmitting ? "opacity-75 cursor-not-allowed" : ""}`}
           >
             <PlusCircle size={18} />
             {isSubmitting ? "Publishing..." : "Publish Pet Listing"}

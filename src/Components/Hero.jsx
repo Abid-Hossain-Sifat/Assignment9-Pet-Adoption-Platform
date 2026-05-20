@@ -5,9 +5,9 @@ import { PawPrint } from "lucide-react";
 
 const Hero = () => {
   return (
-    <div className="py-12 md:py-20 bg-[#f5faf8]">
+    <div className="py-12 md:py-20 bg-[#f5faf8] animate__animated animate__fadeIn">
       <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start w-full lg:max-w-[80%] mx-auto px-6 lg:px-0 gap-12 lg:gap-6">
-        <div className="flex flex-col space-y-4 md:space-y-6 max-w-xl text-center lg:text-left items-center lg:items-start">
+        <div className="flex flex-col space-y-4 md:space-y-6 max-w-xl text-center lg:text-left items-center lg:items-start animate__animated animate__fadeInLeft">
           <h1 className="text-[32px] sm:text-[38px] md:text-[44px] font-extrabold text-slate-900 leading-[1.15] md:leading-[1.1] tracking-tight">
             Connecting <br className="hidden sm:inline" />
             <span className="text-[#00685f]">Compassionate Hearts</span> <br />
@@ -21,16 +21,16 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center gap-4 pt-2 w-full sm:w-auto">
-            <button className="bg-[#00685f] hover:bg-[#005049] text-white px-6 py-3 font-semibold rounded-2xl shadow-sm transition-all duration-300 w-full sm:w-auto">
+            <button className="bg-[#00685f] cursor-pointer hover:bg-[#005049] text-white px-6 py-3 font-semibold rounded-2xl shadow-sm transition-all duration-300 w-full sm:w-auto">
               Adopt Now
             </button>
-            <button className="border-2 border-[#00685f]/30 text-[#00685f] hover:bg-[#00685f]/5 px-6 py-3 font-semibold rounded-2xl transition-all duration-300 w-full sm:w-auto">
+            <button className="border-2 cursor-pointer border-[#00685f]/30 text-[#00685f] hover:bg-[#00685f]/5 px-6 py-3 font-semibold rounded-2xl transition-all duration-300 w-full sm:w-auto">
               Our Process
             </button>
           </div>
         </div>
 
-        <div className="relative inline-block group cursor-pointer perspective-1000 mt-6 lg:mt-0">
+        <div className="relative inline-block group cursor-pointer perspective-1000 mt-6 lg:mt-0 animate__animated animate__zoomIn">
           <div className="overflow-hidden rounded-[24px] md:rounded-[32px] shadow-lg transition-all duration-500 ease-out transform group-hover:rotate-0 rotate-3 group-hover:scale-102 origin-bottom-right">
             <Image
               src={HeroImg}

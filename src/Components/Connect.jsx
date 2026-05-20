@@ -4,7 +4,7 @@ import { PawPrint } from "lucide-react";
 
 const Connect = () => {
   return (
-    <div className="bg-[#f5faf8] py-12 md:py-24">
+    <div className="bg-[#f5faf8] py-12 md:py-24 animate__animated animate__fadeIn">
       <div className="w-full max-w-[92%] md:max-w-[80%] mx-auto">
         <div className="relative bg-[#00685f] px-4 sm:px-6 py-14 md:py-20 rounded-[32px] text-center text-white overflow-hidden shadow-md">
           
@@ -72,7 +72,7 @@ const Connect = () => {
             />
           </div>
 
-          <div className="relative z-10 max-w-2xl mx-auto flex flex-col gap-3 md:gap-4">
+          <div className="relative z-10 max-w-2xl mx-auto flex flex-col gap-3 md:gap-4 animate__animated animate__fadeInUp animate__delay-1s">
             <h2 className="text-2xl sm:text-3xl md:text-[40px] font-extrabold tracking-tight">
               Stay Connected
             </h2>

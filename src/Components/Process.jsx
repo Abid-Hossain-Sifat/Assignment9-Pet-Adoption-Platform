@@ -5,9 +5,9 @@ import { CheckCircle2 } from "lucide-react";
 
 const Process = () => {
   return (
-    <div className="bg-[#00685f] py-12 md:py-20 lg:py-24 text-white overflow-hidden">
+    <div className="bg-[#00685f] py-12 md:py-20 lg:py-24 text-white overflow-hidden animate__animated animate__fadeIn">
       <div className="w-full lg:max-w-[80%] mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 px-4 lg:px-0">
-        <div className="flex flex-col space-y-6 md:space-y-8 max-w-xl w-full text-left">
+        <div className="flex flex-col space-y-6 md:space-y-8 max-w-xl w-full text-left animate__animated animate__fadeInLeft">
           <div className="space-y-3 md:space-y-4">
             <h2 className="text-2xl sm:text-3xl md:text-[36px] font-extrabold tracking-tight leading-tight">
               Our Seamless Adoption Process
@@ -66,7 +66,7 @@ const Process = () => {
           </div>
         </div>
 
-        <div className="relative w-full max-w-[340px] sm:max-w-[420px] lg:max-w-[500px] aspect-square flex items-center justify-center shrink-0 mt-6 lg:mt-0">
+        <div className="relative w-full max-w-[340px] sm:max-w-[420px] lg:max-w-[500px] aspect-square flex items-center justify-center shrink-0 mt-6 lg:mt-0 animate__animated animate__fadeInRight">
           <div className="absolute inset-2 sm:inset-4 bg-teal-800/40 backdrop-blur-sm rounded-[24px] sm:rounded-[32px] shadow-[inset_0_1px_2px_rgba(255,255,255,0.1)] border border-teal-700/30 transform -rotate-1"></div>
 
           <div className="relative z-10 p-3 sm:p-4 drop-shadow-[0_20px_35px_rgba(0,0,0,0.15)] transition-transform duration-500 hover:scale-[1.03] ease-out transform -rotate-2">

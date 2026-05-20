@@ -9,7 +9,7 @@ const HomePets = async () => {
   const featuredPets = pets ? pets.slice(0, 6) : [];
 
   return (
-    <div className="bg-[#f5faf8] py-12 md:py-16">
+    <div className="bg-[#f5faf8] py-12 md:py-16 animate__animated animate__fadeInUp">
       <div className="w-full lg:max-w-[80%] mx-auto px-4 lg:px-0">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 mb-8">
           <div>
@@ -39,7 +39,7 @@ const HomePets = async () => {
             return (
               <div
                 key={pet._id || index}
-                className="group bg-white rounded-2xl p-4 border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+                className="group bg-white rounded-2xl p-4 border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between animate__animated animate__fadeInUp animate__faster"
               >
                 <div className="relative h-60 sm:h-64 w-full rounded-xl overflow-hidden mb-4">
                   <img
@@ -61,7 +61,7 @@ const HomePets = async () => {
                     {pet.status || "Active"}
                   </span>
 
-                  <button className="absolute top-3 right-3 p-2 bg-black/20 hover:bg-black/40 rounded-full text-white backdrop-blur-xs transition-all z-10">
+                  <button className="absolute cursor-pointer top-3 right-3 p-2 bg-black/20 hover:bg-black/40 rounded-full text-white backdrop-blur-xs transition-all z-10">
                     <Heart
                       size={18}
                       className="fill-none stroke-white stroke-[2.5]"
@@ -87,7 +87,7 @@ const HomePets = async () => {
                   </div>
 
                   <Link href={`/all-pets/${pet._id}`} className="w-full">
-                    <button className="w-full bg-white hover:bg-[#00685f] hover:text-white hover:border-[#00685f] text-slate-800 font-semibold py-2.5 border border-gray-300 rounded-xl transition-all duration-300 text-sm shadow-xs">
+                    <button className="w-full cursor-pointer bg-white hover:bg-[#00685f] hover:text-white hover:border-[#00685f] text-slate-800 font-semibold py-2.5 border border-gray-300 rounded-xl transition-all duration-300 text-sm shadow-xs">
                       View Details
                     </button>
                   </Link>

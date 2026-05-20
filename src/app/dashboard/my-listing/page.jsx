@@ -426,7 +426,7 @@ const DashListPage = () => {
                         triggerEdit(pet);
                       }}
                       disabled={updatingId === pet._id}
-                      className="h-10 w-10 bg-teal-50 hover:bg-teal-100 text-[#00685f] border border-teal-100 rounded-xl flex items-center justify-center transition-all duration-300 focus:outline-none"
+                      className="h-10 w-10  bg-teal-50 cursor-pointer hover:bg-teal-100 text-[#00685f] border border-teal-100 rounded-xl flex items-center justify-center transition-all duration-300 focus:outline-none"
                       title="Edit Details"
                     >
                       {updatingId === pet._id ? (
@@ -442,7 +442,7 @@ const DashListPage = () => {
                         triggerDelete(pet);
                       }}
                       disabled={deletingId === pet._id}
-                      className="h-10 w-10 bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-100 rounded-xl flex items-center justify-center transition-all duration-300 focus:outline-none"
+                      className="h-10 w-10 bg-rose-50 cursor-pointer hover:bg-rose-100 text-rose-600 border border-rose-100 rounded-xl flex items-center justify-center transition-all duration-300 focus:outline-none"
                       title="Delete Listing"
                     >
                       {deletingId === pet._id ? (
@@ -477,13 +477,13 @@ const DashListPage = () => {
                   setShowDeleteModal(false);
                   setPetToDelete(null);
                 }}
-                className="flex-1 py-3 px-4 border border-gray-200 text-slate-600 font-bold rounded-xl text-sm hover:bg-slate-50 transition-colors"
+                className="flex-1 py-3 px-4 border cursor-pointer border-gray-200 text-slate-600 font-bold rounded-xl text-sm hover:bg-slate-50 transition-colors"
               >
                 No, Keep It
               </button>
               <button
                 onClick={confirmDelete}
-                className="flex-1 py-3 px-4 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl text-sm transition-colors shadow-md hover:shadow-lg"
+                className="flex-1 py-3 px-4 cursor-pointer bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl text-sm transition-colors shadow-md hover:shadow-lg"
               >
                 Yes, Delete
               </button>
@@ -501,7 +501,7 @@ const DashListPage = () => {
                 setShowEditModal(false);
                 setPetToEdit(null);
               }}
-              className="absolute top-5 right-5 h-8 w-8 text-gray-400 hover:text-slate-600 hover:bg-slate-50 rounded-lg flex items-center justify-center transition-all"
+              className="absolute top-5 right-5 h-8 w-8 cursor-pointer text-gray-400 hover:text-slate-600 hover:bg-slate-50 rounded-lg flex items-center justify-center transition-all"
             >
               <X size={20} />
             </button>
@@ -734,13 +734,13 @@ const DashListPage = () => {
                     setShowEditModal(false);
                     setPetToEdit(null);
                   }}
-                  className="py-2.5 px-6 border border-gray-200 text-slate-600 font-bold rounded-xl text-xs hover:bg-slate-50 transition-colors"
+                  className="py-2.5 px-6 border cursor-pointer border-gray-200 text-slate-600 font-bold rounded-xl text-xs hover:bg-slate-50 transition-colors"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="py-2.5 px-6 bg-[#00685f] hover:bg-[#005049] text-white font-bold rounded-xl text-xs transition-colors shadow-md flex items-center gap-1.5"
+                  className="py-2.5 px-6 bg-[#00685f] cursor-pointer hover:bg-[#005049] text-white font-bold rounded-xl text-xs transition-colors shadow-md flex items-center gap-1.5"
                 >
                   Save Changes
                 </button>
@@ -765,13 +765,13 @@ const DashListPage = () => {
             <div className="flex gap-3 w-full">
               <button
                 onClick={() => setShowUpdateConfirmModal(false)}
-                className="flex-1 py-3 px-4 border border-gray-200 text-slate-600 font-bold rounded-xl text-sm hover:bg-slate-50 transition-colors"
+                className="flex-1 py-3 px-4 border cursor-pointer border-gray-200 text-slate-600 font-bold rounded-xl text-sm hover:bg-slate-50 transition-colors"
               >
                 No, Cancel
               </button>
               <button
                 onClick={confirmUpdate}
-                className="flex-1 py-3 px-4 bg-[#00685f] hover:bg-[#005049] text-white font-bold rounded-xl text-sm transition-colors shadow-md hover:shadow-lg"
+                className="flex-1 py-3 px-4 cursor-pointer bg-[#00685f] hover:bg-[#005049] text-white font-bold rounded-xl text-sm transition-colors shadow-md hover:shadow-lg"
               >
                 Yes, Update
               </button>
@@ -790,7 +790,7 @@ const DashListPage = () => {
                 setSelectedPetForRequests(null);
                 setPetRequests([]);
               }}
-              className="absolute top-5 right-5 h-8 w-8 text-gray-400 hover:text-slate-600 hover:bg-slate-50 rounded-lg flex items-center justify-center transition-all"
+              className="absolute top-5 right-5 h-8 w-8 cursor-pointer text-gray-400 hover:text-slate-600 hover:bg-slate-50 rounded-lg flex items-center justify-center transition-all"
             >
               <X size={20} />
             </button>
@@ -873,13 +873,13 @@ const DashListPage = () => {
                         <div className="flex sm:flex-col gap-2 self-end sm:self-start w-full sm:w-auto">
                           <button
                             onClick={() => triggerApproveRequest(request)}
-                            className="flex-1 sm:flex-none py-2 px-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-xs transition-all shadow-xs flex items-center justify-center gap-1"
+                            className="flex-1 sm:flex-none py-2 px-4 bg-emerald-600 cursor-pointer hover:bg-emerald-700 text-white font-bold rounded-xl text-xs transition-all shadow-xs flex items-center justify-center gap-1"
                           >
                             <CheckCircle2 size={14} /> Approve
                           </button>
                           <button
                             onClick={() => triggerRejectRequest(request)}
-                            className="flex-1 sm:flex-none py-2 px-4 bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-100 rounded-xl text-xs transition-all flex items-center justify-center gap-1"
+                            className="flex-1 sm:flex-none py-2 px-4 bg-rose-50 cursor-pointer hover:bg-rose-100 text-rose-600 border border-rose-100 rounded-xl text-xs transition-all flex items-center justify-center gap-1"
                           >
                             <XCircle size={14} /> Reject
                           </button>
@@ -928,13 +928,13 @@ const DashListPage = () => {
                   setShowApproveConfirmModal(false);
                   setRequestToApprove(null);
                 }}
-                className="flex-1 py-3 px-4 border border-gray-200 text-slate-600 font-bold rounded-xl text-sm hover:bg-slate-50 transition-colors"
+                className="flex-1 py-3 px-4 border cursor-pointer border-gray-200 text-slate-600 font-bold rounded-xl text-sm hover:bg-slate-50 transition-colors"
               >
                 No, Cancel
               </button>
               <button
                 onClick={confirmApproveRequest}
-                className="flex-1 py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-sm transition-colors shadow-md hover:shadow-lg"
+                className="flex-1 py-3 px-4 bg-emerald-600 cursor-pointer hover:bg-emerald-700 text-white font-bold rounded-xl text-sm transition-colors shadow-md hover:shadow-lg"
               >
                 Yes, Approve
               </button>
@@ -961,13 +961,13 @@ const DashListPage = () => {
                   setShowRejectConfirmModal(false);
                   setRequestToReject(null);
                 }}
-                className="flex-1 py-3 px-4 border border-gray-200 text-slate-600 font-bold rounded-xl text-sm hover:bg-slate-50 transition-colors"
+                className="flex-1 py-3 px-4 border cursor-pointer border-gray-200 text-slate-600 font-bold rounded-xl text-sm hover:bg-slate-50 transition-colors"
               >
                 No, Keep It
               </button>
               <button
                 onClick={confirmRejectRequest}
-                className="flex-1 py-3 px-4 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl text-sm transition-colors shadow-md hover:shadow-lg"
+                className="flex-1 py-3 px-4 bg-rose-600 cursor-pointer hover:bg-rose-700 text-white font-bold rounded-xl text-sm transition-colors shadow-md hover:shadow-lg"
               >
                 Yes, Reject
               </button>

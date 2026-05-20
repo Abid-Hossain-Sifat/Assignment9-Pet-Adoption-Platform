@@ -3,7 +3,7 @@ import { Heart, ShieldPlus, BadgeCheck, PiggyBank } from "lucide-react";
 
 const WhyAdopt = () => {
   return (
-    <div className="bg-[#f5faf8] py-12 md:py-20 lg:py-24">
+    <div className="bg-[#f5faf8] py-12 md:py-20 lg:py-24 animate__animated animate__fadeIn">
       <div className="w-full lg:max-w-[80%] mx-auto px-4 lg:px-0 flex flex-col gap-10 md:gap-16">
         
         <div className="text-center max-w-2xl mx-auto flex flex-col gap-2 md:gap-3">
@@ -16,7 +16,7 @@ const WhyAdopt = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 items-stretch justify-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 items-stretch justify-center animate__animated animate__fadeInUp animate__delay-1s">
           
           <div className="bg-[#edf2f1] p-6 sm:p-8 rounded-[24px] flex flex-col items-center text-center shadow-sm border border-transparent hover:border-[#00685f]/20 hover:bg-white hover:shadow-[0_20px_40px_rgba(0,104,95,0.06)] hover:-translate-y-2 transition-all duration-300 ease-out cursor-pointer group">
             <div className="text-[#00685f] mb-4 transition-transform duration-300 group-hover:scale-110">
