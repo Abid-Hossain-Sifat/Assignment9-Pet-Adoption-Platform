@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { authClient } from "@/lib/auth-client";
+import ProtectedRoute from "@/Components/ProtectedRoute";
 import {
   Heart,
   MapPin,
@@ -545,4 +546,10 @@ const PetDetailsPage = ({ params }) => {
   );
 };
 
-export default PetDetailsPage;
+export default function PetDetailsPageWrapper(props) {
+  return (
+    <ProtectedRoute>
+      <PetDetailsPage {...props} />
+    </ProtectedRoute>
+  );
+}

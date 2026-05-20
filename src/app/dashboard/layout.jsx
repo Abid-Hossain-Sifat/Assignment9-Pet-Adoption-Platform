@@ -2,6 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { authClient } from '@/lib/auth-client';
+import ProtectedRoute from '@/Components/ProtectedRoute';
 import { 
   PlusCircle, 
   ListOrdered, 
@@ -146,4 +147,10 @@ const DashboardLayout = ({ children }) => {
   );
 };
 
-export default DashboardLayout;
+export default function DashboardLayoutWrapper(props) {
+  return (
+    <ProtectedRoute>
+      <DashboardLayout {...props} />
+    </ProtectedRoute>
+  );
+}

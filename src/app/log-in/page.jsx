@@ -1,12 +1,14 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { PawPrint, Mail, Lock, Eye, EyeOff, AlertCircle, Loader2 } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 
 const Login = () => {
-  const router = useRouter(); 
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectPath = searchParams.get("redirect") || "/"; 
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -50,7 +52,7 @@ const Login = () => {
       showToastMessage("Login Successful! Redirecting...", "success");
       
       setTimeout(() => {
-        router.push("/");
+        router.push(redirectPath);
         router.refresh(); 
       }, 1500);
 
@@ -66,7 +68,7 @@ const Login = () => {
       showToastMessage("Connecting with Google...", "success");
       await authClient.signIn.social({
         provider: "google",
-        callbackURL: "/"
+        callbackURL: `http://localhost:3000${redirectPath}`
       });
     } catch (err) {
       showToastMessage("Google login failed.", "error");
