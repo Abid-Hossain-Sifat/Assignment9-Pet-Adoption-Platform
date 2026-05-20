@@ -120,16 +120,16 @@ const PetDetailsPage = ({ params }) => {
 
   if (!pet) {
     return (
-      <div className="min-h-screen bg-[#f5faf8] flex flex-col items-center justify-center p-4">
-        <h2 className="text-2xl font-bold text-slate-800 mb-4">
+      <div className="min-h-screen bg-[#f5faf8] flex flex-col items-center justify-center p-4 text-center">
+        <h2 className="text-xl sm:text-2xl font-bold text-slate-800 mb-2">
           Pet Not Found!
         </h2>
-        <p className="text-gray-600 mb-6">
+        <p className="text-sm text-gray-600 mb-6 max-w-sm">
           The pet you are looking for does not exist or has been adopted.
         </p>
         <Link
           href="/all-pets"
-          className="bg-[#00685f] text-white px-6 py-2.5 rounded-xl font-semibold shadow-xs"
+          className="bg-[#00685f] text-white px-6 py-2.5 rounded-xl font-semibold shadow-xs text-sm"
         >
           Back to All Pets
         </Link>
@@ -156,20 +156,22 @@ const PetDetailsPage = ({ params }) => {
   const isApprovedWinner = userRequest && userRequest.status === "approved";
 
   return (
-    <div className="bg-[#f5faf8] min-h-screen py-12">
-      <div className="max-w-[80%] mx-auto">
+    <div className="bg-[#f5faf8] min-h-screen py-6 md:py-12">
+      <div className="w-full max-w-[92%] sm:max-w-[85%] lg:max-w-[80%] mx-auto">
         <div className="mb-6">
           <Link
             href="/all-pets"
             className="text-sm font-semibold text-[#00685f] hover:underline"
           >
-            ← Back to All Pets
+            &larr; Back to All Pets
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          <div className="lg:col-span-7 bg-white rounded-3xl p-6 shadow-xs border border-gray-100 space-y-6">
-            <div className="relative h-[400px] w-full rounded-2xl overflow-hidden shadow-xs">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+          
+          <div className="lg:col-span-7 bg-white rounded-3xl p-4 sm:p-6 shadow-xs border border-gray-100 space-y-6">
+
+            <div className="relative h-[250px] sm:h-[350px] md:h-[400px] w-full rounded-2xl overflow-hidden shadow-xs">
               <img
                 src={
                   pet.image ||
@@ -204,89 +206,89 @@ const PetDetailsPage = ({ params }) => {
             </div>
 
             <div>
-              <div className="flex justify-between items-center mb-2">
-                <h1 className="text-4xl font-extrabold text-slate-800">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mb-2">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-800 break-words">
                   {pet.name}
                 </h1>
-                <span className="bg-[#eef7f5] text-[#00685f] text-xs font-bold px-3 py-1.5 rounded-lg border border-[#00685f]/10">
+                <span className="self-start sm:self-center bg-[#eef7f5] text-[#00685f] text-xs font-bold px-3 py-1.5 rounded-lg border border-[#00685f]/10">
                   {pet.species}
                 </span>
               </div>
 
-              <p className="flex items-center gap-1 text-gray-500 font-medium">
-                <MapPin size={16} className="text-[#00685f]" />
-                {pet.location}
+              <p className="flex items-center gap-1 text-sm text-gray-500 font-medium">
+                <MapPin size={16} className="text-[#00685f] flex-shrink-0" />
+                <span className="truncate">{pet.location}</span>
               </p>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              <div className="bg-[#f5faf8] p-3.5 rounded-xl border border-gray-100 text-center">
-                <p className="text-xs text-gray-400 font-semibold uppercase mb-1">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+              <div className="bg-[#f5faf8] p-3 rounded-xl border border-gray-100 text-center">
+                <p className="text-[10px] text-gray-400 font-semibold uppercase mb-1">
                   Breed
                 </p>
-                <p className="text-sm font-bold text-slate-800 truncate">
+                <p className="text-xs sm:text-sm font-bold text-slate-800 truncate">
                   {pet.breed}
                 </p>
               </div>
-              <div className="bg-[#f5faf8] p-3.5 rounded-xl border border-gray-100 text-center">
-                <p className="text-xs text-gray-400 font-semibold uppercase mb-1">
+              <div className="bg-[#f5faf8] p-3 rounded-xl border border-gray-100 text-center">
+                <p className="text-[10px] text-gray-400 font-semibold uppercase mb-1">
                   Age
                 </p>
-                <p className="text-sm font-bold text-slate-800">{pet.age}</p>
+                <p className="text-xs sm:text-sm font-bold text-slate-800 truncate">{pet.age}</p>
               </div>
-              <div className="bg-[#f5faf8] p-3.5 rounded-xl border border-gray-100 text-center">
-                <p className="text-xs text-gray-400 font-semibold uppercase mb-1">
+              <div className="bg-[#f5faf8] p-3 rounded-xl border border-gray-100 text-center">
+                <p className="text-[10px] text-gray-400 font-semibold uppercase mb-1">
                   Gender
                 </p>
-                <p className="text-sm font-bold text-slate-800">{pet.gender}</p>
+                <p className="text-xs sm:text-sm font-bold text-slate-800 truncate">{pet.gender}</p>
               </div>
-              <div className="bg-[#f5faf8] p-3.5 rounded-xl border border-gray-100 text-center">
-                <p className="text-xs text-gray-400 font-semibold uppercase mb-1">
+              <div className="bg-[#f5faf8] p-3 rounded-xl border border-gray-100 text-center">
+                <p className="text-[10px] text-gray-400 font-semibold uppercase mb-1">
                   Adoption Fee
                 </p>
-                <p className="text-sm font-bold text-[#00685f]">
+                <p className="text-xs sm:text-sm font-bold text-[#00685f] truncate">
                   ৳{pet.adoptionFee}
                 </p>
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-4">
-              <div className="flex items-center gap-2 bg-emerald-50 text-emerald-700 px-4 py-2 rounded-xl border border-emerald-100 text-sm font-semibold">
-                <Activity size={18} />
-                Health: {pet.healthStatus || "Healthy"}
+            <div className="flex flex-wrap gap-3">
+              <div className="flex items-center gap-2 bg-emerald-50 text-emerald-700 px-3.5 py-2 rounded-xl border border-emerald-100 text-xs sm:text-sm font-semibold">
+                <Activity size={16} className="flex-shrink-0" />
+                <span className="truncate">Health: {pet.healthStatus || "Healthy"}</span>
               </div>
-              <div className="flex items-center gap-2 bg-blue-50 text-blue-700 px-4 py-2 rounded-xl border border-blue-100 text-sm font-semibold">
-                <ShieldCheck size={18} />
-                Vaccination: {pet.vaccinationStatus || "Vaccinated"}
+              <div className="flex items-center gap-2 bg-blue-50 text-blue-700 px-3.5 py-2 rounded-xl border border-blue-100 text-xs sm:text-sm font-semibold">
+                <ShieldCheck size={16} className="flex-shrink-0" />
+                <span className="truncate">Vaccination: {pet.vaccinationStatus || "Vaccinated"}</span>
               </div>
             </div>
 
             <div className="pt-2">
-              <h3 className="text-lg font-bold text-slate-800 mb-2">
+              <h3 className="text-base sm:text-lg font-bold text-slate-800 mb-2">
                 About {pet.name}
               </h3>
-              <p className="text-gray-600 leading-relaxed">{pet.description}</p>
+              <p className="text-xs sm:text-sm text-gray-600 leading-relaxed text-justify sm:text-left">{pet.description}</p>
             </div>
 
-            <div className="border-t border-gray-100 pt-5 flex items-center gap-3">
-              <div className="h-10 w-10 bg-[#00685f]/10 rounded-full flex items-center justify-center text-[#00685f]">
+            <div className="border-t border-gray-100 pt-5 flex items-center gap-3 overflow-hidden">
+              <div className="h-10 w-10 bg-[#00685f]/10 rounded-full flex items-center justify-center text-[#00685f] flex-shrink-0">
                 <Mail size={18} />
               </div>
-              <div>
-                <p className="text-[11px] text-gray-400 font-semibold uppercase">
+              <div className="overflow-hidden">
+                <p className="text-[10px] text-gray-400 font-semibold uppercase">
                   Contact Shelter
                 </p>
-                <p className="text-sm font-bold text-slate-700">
+                <p className="text-xs sm:text-sm font-bold text-slate-700 truncate">
                   {pet.email || pet.ownerEmail}
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="lg:col-span-5 sticky top-6">
+          <div className="lg:col-span-5 lg:sticky lg:top-6 w-full">
             {!session ? (
-              <div className="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm text-center">
-                <h2 className="text-2xl font-bold text-slate-800 mb-2">
+              <div className="bg-white rounded-3xl p-5 sm:p-6 border border-gray-100 shadow-sm text-center">
+                <h2 className="text-xl sm:text-2xl font-bold text-slate-800 mb-2">
                   Sign In to Adopt
                 </h2>
                 <p className="text-xs text-gray-500 mb-6">
@@ -295,21 +297,21 @@ const PetDetailsPage = ({ params }) => {
                 </p>
                 <Link
                   href="/log-in"
-                  className="w-full block py-4 bg-[#00685f] hover:bg-[#005049] text-white font-bold rounded-xl text-sm transition-all text-center"
+                  className="w-full block py-3.5 bg-[#00685f] hover:bg-[#005049] text-white font-bold rounded-xl text-sm transition-all text-center"
                 >
                   Log In Now
                 </Link>
               </div>
             ) : isOwner ? (
-              <div className="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm text-center flex flex-col items-center">
-                <div className="h-20 w-20 bg-teal-50 text-[#00685f] rounded-full flex items-center justify-center mb-6 border border-teal-100 shadow-inner">
-                  <FolderHeart size={36} />
+              <div className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-100 shadow-sm text-center flex flex-col items-center">
+                <div className="h-16 w-16 sm:h-20 sm:w-20 bg-teal-50 text-[#00685f] rounded-full flex items-center justify-center mb-4 sm:mb-6 border border-teal-100 shadow-inner">
+                  <FolderHeart size={30} className="sm:size-[36px]" />
                 </div>
 
-                <h2 className="text-2xl font-black text-slate-800 mb-3">
+                <h2 className="text-xl sm:text-2xl font-black text-slate-800 mb-2 sm:mb-3">
                   Your Listed Pet
                 </h2>
-                <p className="text-sm text-slate-400 max-w-xs leading-relaxed mb-8">
+                <p className="text-xs sm:text-sm text-slate-400 max-w-xs leading-relaxed mb-6 sm:mb-8">
                   You are the owner of{" "}
                   <strong className="text-slate-700">"{pet.name}"</strong>.
                   Since you listed this pet for adoption, you cannot submit an
@@ -319,7 +321,7 @@ const PetDetailsPage = ({ params }) => {
                 <div className="w-full space-y-3">
                   <Link
                     href="/dashboard/my-listing"
-                    className="w-full py-4 bg-[#00685f] hover:bg-[#005049] text-white font-bold rounded-xl text-sm transition-all duration-300 shadow-sm hover:shadow-md flex items-center justify-center gap-2"
+                    className="w-full py-3.5 bg-[#00685f] hover:bg-[#005049] text-white font-bold rounded-xl text-sm transition-all duration-300 shadow-sm hover:shadow-md flex items-center justify-center gap-2"
                   >
                     Manage Listing
                     <ExternalLink size={16} />
@@ -327,7 +329,7 @@ const PetDetailsPage = ({ params }) => {
 
                   <Link
                     href="/all-pets"
-                    className="w-full py-3.5 border border-slate-200 text-slate-600 font-bold rounded-xl text-xs hover:bg-slate-50 transition-all block"
+                    className="w-full py-3 border border-slate-200 text-slate-600 font-bold rounded-xl text-xs hover:bg-slate-50 transition-all block"
                   >
                     View Other Pets
                   </Link>
@@ -335,15 +337,15 @@ const PetDetailsPage = ({ params }) => {
               </div>
             ) : isAdoptedStatus ? (
               isApprovedWinner ? (
-                <div className="bg-white rounded-3xl p-8 border border-emerald-100 shadow-md text-center flex flex-col items-center animate-fadeIn bg-gradient-to-b from-white to-emerald-50/20">
-                  <div className="h-20 w-20 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mb-6 border border-emerald-100 shadow-inner">
-                    <Sparkles size={36} className="animate-pulse" />
+                <div className="bg-white rounded-3xl p-6 sm:p-8 border border-emerald-100 shadow-md text-center flex flex-col items-center animate-fadeIn bg-gradient-to-b from-white to-emerald-50/20">
+                  <div className="h-16 w-16 sm:h-20 sm:w-20 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mb-4 sm:mb-6 border border-emerald-100 shadow-inner">
+                    <Sparkles size={30} className="animate-pulse sm:size-[36px]" />
                   </div>
 
-                  <h2 className="text-2xl font-black text-emerald-700 mb-3">
+                  <h2 className="text-xl sm:text-2xl font-black text-emerald-700 mb-2 sm:mb-3">
                     You Got This Pet! 🎉
                   </h2>
-                  <p className="text-sm text-emerald-800/80 max-w-xs leading-relaxed mb-6 font-medium">
+                  <p className="text-xs sm:text-sm text-emerald-800/80 max-w-xs leading-relaxed mb-6 font-medium">
                     Congratulations! Your adoption request for{" "}
                     <strong className="text-slate-800 font-bold">
                       "{pet.name}"
@@ -352,15 +354,15 @@ const PetDetailsPage = ({ params }) => {
                     lovely companion!
                   </p>
 
-                  <div className="bg-emerald-50/80 border border-emerald-100/50 rounded-2xl p-4 text-left w-full mb-6 text-xs space-y-2">
-                    <p className="font-extrabold text-emerald-900 uppercase tracking-wider text-[10px]">
+                  <div className="bg-emerald-50/80 border border-emerald-100/50 rounded-2xl p-4 text-left w-full mb-6 text-xs space-y-2 overflow-hidden">
+                    <p className="font-extrabold text-emerald-900 uppercase tracking-wider text-[9px] sm:text-[10px]">
                       Shelter Contact Details:
                     </p>
-                    <p>
+                    <p className="truncate">
                       <strong className="text-emerald-800">Email:</strong>{" "}
                       {pet.email || pet.ownerEmail}
                     </p>
-                    <p>
+                    <p className="truncate">
                       <strong className="text-emerald-800">Location:</strong>{" "}
                       {pet.location}
                     </p>
@@ -374,18 +376,18 @@ const PetDetailsPage = ({ params }) => {
                   </Link>
                 </div>
               ) : (
-                <div className="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm text-center flex flex-col items-center">
-                  <div className="h-20 w-20 bg-slate-50 text-slate-400 rounded-full flex items-center justify-center mb-6 border border-slate-200">
+                <div className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-100 shadow-sm text-center flex flex-col items-center">
+                  <div className="h-16 w-16 sm:h-20 sm:w-20 bg-slate-50 text-slate-400 rounded-full flex items-center justify-center mb-4 sm:mb-6 border border-slate-200">
                     <Heart
-                      size={36}
-                      className="fill-slate-300 stroke-slate-400"
+                      size={30}
+                      className="fill-slate-300 stroke-slate-400 sm:size-[36px]"
                     />
                   </div>
 
-                  <h2 className="text-2xl font-black text-slate-800 mb-3">
+                  <h2 className="text-xl sm:text-2xl font-black text-slate-800 mb-2 sm:mb-3">
                     Already Adopted
                   </h2>
-                  <p className="text-sm text-slate-400 max-w-xs leading-relaxed mb-6">
+                  <p className="text-xs sm:text-sm text-slate-400 max-w-xs leading-relaxed mb-6">
                     We are happy to let you know that{" "}
                     <strong className="text-slate-700">"{pet.name}"</strong> has
                     already found a loving home and is adopted.
@@ -401,15 +403,15 @@ const PetDetailsPage = ({ params }) => {
               )
             ) : adoptSuccess ||
               (hasApplied && userRequest?.status === "pending") ? (
-              <div className="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm text-center flex flex-col items-center animate-fadeIn">
-                <div className="h-20 w-20 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mb-6 border border-emerald-100 shadow-inner">
-                  <ShieldCheck size={36} />
+              <div className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-100 shadow-sm text-center flex flex-col items-center animate-fadeIn">
+                <div className="h-16 w-16 sm:h-20 sm:w-20 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mb-4 sm:mb-6 border border-emerald-100 shadow-inner">
+                  <ShieldCheck size={30} className="sm:size-[36px]" />
                 </div>
 
-                <h2 className="text-2xl font-black text-slate-800 mb-3">
+                <h2 className="text-xl sm:text-2xl font-black text-slate-800 mb-2 sm:mb-3">
                   Request Submitted!
                 </h2>
-                <p className="text-sm text-slate-400 max-w-xs leading-relaxed mb-6">
+                <p className="text-xs sm:text-sm text-slate-400 max-w-xs leading-relaxed mb-6">
                   Your adoption request for{" "}
                   <strong className="text-slate-700">"{pet.name}"</strong> has
                   been recorded. The pet status will appear as{" "}
@@ -425,8 +427,8 @@ const PetDetailsPage = ({ params }) => {
                 </Link>
               </div>
             ) : (
-              <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 animate-fadeIn">
-                <h2 className="text-2xl font-bold text-slate-800 mb-1">
+              <div className="bg-white rounded-3xl p-5 sm:p-6 shadow-sm border border-gray-100 animate-fadeIn">
+                <h2 className="text-xl sm:text-2xl font-bold text-slate-800 mb-1">
                   Adopt {pet.name}
                 </h2>
                 <p className="text-xs text-gray-500 mb-6">
@@ -436,7 +438,7 @@ const PetDetailsPage = ({ params }) => {
 
                 <form onSubmit={handleAdoptSubmit} className="space-y-4">
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 uppercase mb-2">
+                    <label className="block text-[10px] font-bold text-slate-700 uppercase mb-2">
                       Your Full Name
                     </label>
                     <div className="relative">
@@ -456,7 +458,7 @@ const PetDetailsPage = ({ params }) => {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 uppercase mb-2">
+                    <label className="block text-[10px] font-bold text-slate-700 uppercase mb-2">
                       Your Email Address
                     </label>
                     <div className="relative">
@@ -477,7 +479,7 @@ const PetDetailsPage = ({ params }) => {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 uppercase mb-2">
+                    <label className="block text-[10px] font-bold text-slate-700 uppercase mb-2">
                       Preferred Pickup Date
                     </label>
                     <div className="relative">
@@ -498,7 +500,7 @@ const PetDetailsPage = ({ params }) => {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 uppercase mb-2">
+                    <label className="block text-[10px] font-bold text-slate-700 uppercase mb-2">
                       Why do you want to adopt?
                     </label>
                     <div className="relative">
@@ -519,7 +521,7 @@ const PetDetailsPage = ({ params }) => {
                   <button
                     type="submit"
                     disabled={isPending || adoptSubmitting}
-                    className={`w-full py-4 rounded-xl font-bold text-base transition-all duration-300 shadow-xs mt-2 flex items-center justify-center gap-2 ${
+                    className={`w-full py-3.5 sm:py-4 rounded-xl font-bold text-sm sm:text-base transition-all duration-300 shadow-xs mt-2 flex items-center justify-center gap-2 cursor-pointer ${
                       isPending
                         ? "bg-gray-300 text-gray-500 cursor-not-allowed"
                         : "bg-[#00685f] hover:bg-[#005049] text-white hover:shadow-md"

@@ -79,8 +79,8 @@ const DashAddPage = () => {
   };
 
   return (
-    <div className="bg-white border border-gray-100 rounded-3xl p-8 shadow-xs relative">
-      {/* === TOAST NOTIFICATION === */}
+    <div className="bg-white border border-gray-100 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-xs relative">
+
       {toast.show && (
         <div className="toast toast-top toast-end z-50 fixed top-4 right-4 animate-bounce">
           <div
@@ -91,22 +91,23 @@ const DashAddPage = () => {
           </div>
         </div>
       )}
-      <div className="flex items-center gap-3 border-b border-gray-100 pb-5 mb-8">
-        <div className="h-10 w-10 bg-[#00685f]/10 text-[#00685f] rounded-xl flex items-center justify-center">
-          <PlusCircle size={22} />
+      
+      <div className="flex items-center gap-3 border-b border-gray-100 pb-5 mb-6 sm:mb-8">
+        <div className="h-9 w-9 sm:h-10 sm:w-10 bg-[#00685f]/10 text-[#00685f] rounded-xl flex items-center justify-center shrink-0">
+          <PlusCircle className="w-5 h-5 sm:w-[22px] sm:h-[22px]" />
         </div>
         <div>
-          <h1 className="text-2xl font-extrabold text-slate-800">
+          <h1 className="text-xl sm:text-2xl font-extrabold text-slate-800">
             Add New Pet
           </h1>
-          <p className="text-xs text-gray-400">
+          <p className="text-[11px] sm:text-xs text-gray-400 mt-0.5">
             Fill up the form below to list a companion for adoption.
           </p>
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
           <div>
             <label className="block text-xs font-bold text-slate-700 uppercase mb-2">
               Pet Name
@@ -358,11 +359,11 @@ const DashAddPage = () => {
           </div>
         </div>
 
-        <div className="flex justify-end pt-4">
+        <div className="flex justify-end pt-2 sm:pt-4">
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`bg-[#00685f] hover:bg-[#005049] text-white font-semibold px-8 py-3.5 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-2 text-sm ${isSubmitting ? "opacity-75 cursor-not-allowed" : ""}`}
+            className={`w-full sm:w-auto bg-[#00685f] hover:bg-[#005049] text-white font-semibold px-8 py-3.5 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2 text-sm ${isSubmitting ? "opacity-75 cursor-not-allowed" : ""}`}
           >
             <PlusCircle size={18} />
             {isSubmitting ? "Publishing..." : "Publish Pet Listing"}
