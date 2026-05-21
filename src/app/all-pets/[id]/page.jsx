@@ -36,7 +36,7 @@ const PetDetailsPage = ({ params }) => {
         const petId = resolvedParams.id;
 
         const baseUrl =
-          process.env.NEXT_PUBLIC_API_URL || "http://localhost:2006/pets";
+          process.env.NEXT_PUBLIC_API_URL;
         const response = await fetch(baseUrl);
         if (response.ok) {
           const data = await response.json();
@@ -83,7 +83,7 @@ const PetDetailsPage = ({ params }) => {
 
     try {
       const baseUrl =
-        process.env.NEXT_PUBLIC_API_URL || "http://localhost:2006/pets";
+        process.env.NEXT_PUBLIC_API_URL;
       const apiUrl = `${baseUrl.replace(/\/pets$/, "")}/adoption-requests`;
       const response = await fetch(apiUrl, {
         method: "POST",

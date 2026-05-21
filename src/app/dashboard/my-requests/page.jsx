@@ -25,14 +25,13 @@ const DashReqPage = () => {
   const [loading, setLoading] = useState(true);
   const [deletingId, setDeletingId] = useState(null);
   
-  // Deletion Modal state
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [selectedRequestForDelete, setSelectedRequestForDelete] = useState(null);
 
   const fetchMyRequests = async () => {
     if (!session?.user?.email) return;
     try {
-      const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:2006/pets";
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL;
       const apiUrl = `${baseUrl.replace(/\/pets$/, '')}/adoption-requests?requesterEmail=${session.user.email}`;
       const response = await fetch(apiUrl);
       if (response.ok) {
@@ -67,7 +66,7 @@ const DashReqPage = () => {
     setShowDeleteConfirm(false);
     
     try {
-      const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:2006/pets";
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL;
       const apiUrl = `${baseUrl.replace(/\/pets$/, '')}/adoption-requests/${id}`;
       const response = await fetch(apiUrl, {
         method: "DELETE",

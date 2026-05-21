@@ -1,10 +1,11 @@
 "use client";
-import { useEffect, useState } from "react";
+
+import { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { ProtectedRouteSkeleton } from "./SkeletonLoader";
 
-const ProtectedRoute = ({ children }) => {
+const ProtectedRouteInner = ({ children }) => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -32,6 +33,14 @@ const ProtectedRoute = ({ children }) => {
   }
 
   return null;
+};
+
+const ProtectedRoute = ({ children }) => {
+  return (
+    <Suspense fallback={<ProtectedRouteSkeleton />}>
+      <ProtectedRouteInner>{children}</ProtectedRouteInner>
+    </Suspense>
+  );
 };
 
 export default ProtectedRoute;

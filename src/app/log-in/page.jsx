@@ -1,11 +1,12 @@
 "use client";
-import React, { useState } from "react";
+
+import React, { useState, Suspense } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { PawPrint, Mail, Lock, Eye, EyeOff, AlertCircle, Loader2 } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 
-const Login = () => {
+const LoginContent = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirectPath = searchParams.get("redirect") || "/"; 
@@ -219,6 +220,21 @@ const Login = () => {
         </form>
       </div>
     </div>
+  );
+};
+
+const Login = () => {
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center min-h-screen bg-[#f5faf8]">
+        <div className="flex flex-col items-center gap-4">
+          <Loader2 className="w-10 h-10 animate-spin text-[#00685f]" />
+          <p className="text-slate-600 font-bold text-sm">Loading login portal...</p>
+        </div>
+      </div>
+    }>
+      <LoginContent />
+    </Suspense>
   );
 };
 

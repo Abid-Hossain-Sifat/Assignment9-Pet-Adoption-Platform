@@ -63,7 +63,7 @@ const DashListPage = () => {
 
   const fetchMyListings = async (email) => {
     try {
-      const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:2006/pets";
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL;
       const apiUrl = `${baseUrl}?email=${email}`;
       const response = await fetch(apiUrl);
       if (response.ok) {
@@ -98,7 +98,7 @@ const DashListPage = () => {
     setShowDeleteModal(false);
     
     try {
-      const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:2006/pets";
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL;
       const apiUrl = `${baseUrl}/${id}`;
       const response = await fetch(apiUrl, {
         method: "DELETE",
@@ -146,7 +146,7 @@ const DashListPage = () => {
     setShowEditModal(false);
     
     try {
-      const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:2006/pets";
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL;
       const apiUrl = `${baseUrl}/${id}`;
       const response = await fetch(apiUrl, {
         method: "PUT",
@@ -176,7 +176,7 @@ const DashListPage = () => {
     setLoadingRequests(true);
     
     try {
-      const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:2006/pets";
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL;
       const apiUrl = `${baseUrl.replace(/\/pets$/, '')}/adoption-requests?petId=${pet._id}`;
       const response = await fetch(apiUrl);
       if (response.ok) {
@@ -203,7 +203,7 @@ const DashListPage = () => {
     setLoadingRequests(true);
     
     try {
-      const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:2006/pets";
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL;
       const apiUrl = `${baseUrl.replace(/\/pets$/, '')}/adoption-requests/${id}/approve`;
       const response = await fetch(apiUrl, {
         method: "PUT",
@@ -245,7 +245,7 @@ const DashListPage = () => {
     setLoadingRequests(true);
     
     try {
-      const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:2006/pets";
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL;
       const apiUrl = `${baseUrl.replace(/\/pets$/, '')}/adoption-requests/${id}/reject`;
       const response = await fetch(apiUrl, {
         method: "PUT",
