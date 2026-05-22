@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { authClient } from "@/lib/auth-client";
 import ProtectedRoute from "@/Components/ProtectedRoute";
+import { getApiUrl } from "@/lib/api-helper";
 import { PetDetailSkeleton } from "@/Components/SkeletonLoader";
 import {
   Heart,
@@ -35,8 +36,7 @@ const PetDetailsPage = ({ params }) => {
         const resolvedParams = await params;
         const petId = resolvedParams.id;
 
-        const baseUrl =
-          process.env.NEXT_PUBLIC_API_URL;
+        const baseUrl = getApiUrl();
         const response = await fetch(baseUrl);
         if (response.ok) {
           const data = await response.json();
@@ -82,8 +82,7 @@ const PetDetailsPage = ({ params }) => {
     };
 
     try {
-      const baseUrl =
-        process.env.NEXT_PUBLIC_API_URL;
+      const baseUrl = getApiUrl();
       const apiUrl = `${baseUrl.replace(/\/pets$/, "")}/adoption-requests`;
       const response = await fetch(apiUrl, {
         method: "POST",

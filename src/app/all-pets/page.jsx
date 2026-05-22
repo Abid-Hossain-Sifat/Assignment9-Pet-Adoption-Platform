@@ -3,6 +3,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
+import { getApiUrl } from "@/lib/api-helper";
 import {
   Heart,
   MapPin,
@@ -59,7 +60,7 @@ const AllPetsPage = () => {
     const loadPetsAndRequests = async () => {
       try {
         setLoading(true);
-        const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+        const baseUrl = getApiUrl();
         
         
         const queryParams = new URLSearchParams();

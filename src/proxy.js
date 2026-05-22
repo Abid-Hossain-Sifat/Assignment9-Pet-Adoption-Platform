@@ -1,11 +1,7 @@
 import { NextResponse } from "next/server";
 
 /**
- * @param {string} token 
- * @param {string} secret 
- * @returns {Promise<boolean>}
- */
-/**
+ * Decode base64url string to original binary/string content
  * @param {string} str 
  * @returns {string} 
  */
@@ -19,6 +15,7 @@ function base64urlDecode(str) {
 }
 
 /**
+ * Verifies a HS256 JWT token using Web Crypto API (Edge compatible)
  * @param {string} token 
  * @param {string} secret 
  * @returns {Promise<boolean>} 

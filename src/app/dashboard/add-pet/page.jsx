@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { authClient } from "@/lib/auth-client";
+import { getApiUrl } from "@/lib/api-helper";
 import {
   PlusCircle,
   Tag,
@@ -53,7 +54,7 @@ const DashAddPage = () => {
     };
 
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+      const apiUrl = getApiUrl();
       const response = await fetch(apiUrl, {
         method: "POST",
         headers: {

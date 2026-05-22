@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { authClient } from '@/lib/auth-client';
+import { getApiUrl } from '@/lib/api-helper';
 import { 
   GitPullRequest, 
   Inbox, 
@@ -31,7 +32,7 @@ const DashReqPage = () => {
   const fetchMyRequests = async () => {
     if (!session?.user?.email) return;
     try {
-      const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+      const baseUrl = getApiUrl();
       const apiUrl = `${baseUrl.replace(/\/pets$/, '')}/adoption-requests?requesterEmail=${session.user.email}`;
       const response = await fetch(apiUrl);
       if (response.ok) {
@@ -66,7 +67,7 @@ const DashReqPage = () => {
     setShowDeleteConfirm(false);
     
     try {
-      const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+      const baseUrl = getApiUrl();
       const apiUrl = `${baseUrl.replace(/\/pets$/, '')}/adoption-requests/${id}`;
       const response = await fetch(apiUrl, {
         method: "DELETE",

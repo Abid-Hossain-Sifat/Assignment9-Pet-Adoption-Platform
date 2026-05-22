@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
+import { getApiUrl } from "@/lib/api-helper";
 import { 
   ListOrdered, 
   PlusCircle, 
@@ -63,7 +64,7 @@ const DashListPage = () => {
 
   const fetchMyListings = async (email) => {
     try {
-      const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+      const baseUrl = getApiUrl();
       const apiUrl = `${baseUrl}?email=${email}`;
       const response = await fetch(apiUrl);
       if (response.ok) {
@@ -98,7 +99,7 @@ const DashListPage = () => {
     setShowDeleteModal(false);
     
     try {
-      const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+      const baseUrl = getApiUrl();
       const apiUrl = `${baseUrl}/${id}`;
       const response = await fetch(apiUrl, {
         method: "DELETE",
@@ -146,7 +147,7 @@ const DashListPage = () => {
     setShowEditModal(false);
     
     try {
-      const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+      const baseUrl = getApiUrl();
       const apiUrl = `${baseUrl}/${id}`;
       const response = await fetch(apiUrl, {
         method: "PUT",
@@ -176,7 +177,7 @@ const DashListPage = () => {
     setLoadingRequests(true);
     
     try {
-      const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+      const baseUrl = getApiUrl();
       const apiUrl = `${baseUrl.replace(/\/pets$/, '')}/adoption-requests?petId=${pet._id}`;
       const response = await fetch(apiUrl);
       if (response.ok) {
@@ -203,7 +204,7 @@ const DashListPage = () => {
     setLoadingRequests(true);
     
     try {
-      const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+      const baseUrl = getApiUrl();
       const apiUrl = `${baseUrl.replace(/\/pets$/, '')}/adoption-requests/${id}/approve`;
       const response = await fetch(apiUrl, {
         method: "PUT",
@@ -245,7 +246,7 @@ const DashListPage = () => {
     setLoadingRequests(true);
     
     try {
-      const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+      const baseUrl = getApiUrl();
       const apiUrl = `${baseUrl.replace(/\/pets$/, '')}/adoption-requests/${id}/reject`;
       const response = await fetch(apiUrl, {
         method: "PUT",

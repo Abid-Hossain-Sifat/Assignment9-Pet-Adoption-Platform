@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { getApiUrl } from "./api-helper";
 
 const listeners = new Set();
 const notifyListeners = () => listeners.forEach((l) => l());
@@ -16,7 +17,7 @@ export const authClient = {
 
       const fetchSession = async () => {
         try {
-          const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+          const baseUrl = getApiUrl();
           const authUrl = `${baseUrl.replace(/\/pets$/, "")}/auth/me`;
 
           const res = await fetch(authUrl, {
@@ -69,7 +70,7 @@ export const authClient = {
   signIn: {
     email: async ({ email, password }) => {
       try {
-        const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+        const baseUrl = getApiUrl();
         const authUrl = `${baseUrl.replace(/\/pets$/, "")}/auth/login`;
 
         const res = await fetch(authUrl, {
@@ -100,7 +101,7 @@ export const authClient = {
       }
     },
     social: async ({ provider, callbackURL }) => {
-      const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+      const baseUrl = getApiUrl();
       const redirectUrl = `${baseUrl.replace(/\/pets$/, "")}/auth/social/${provider}?callbackURL=${encodeURIComponent(callbackURL)}`;
       window.location.href = redirectUrl;
       return {};
@@ -110,7 +111,7 @@ export const authClient = {
   signUp: {
     email: async ({ email, password, name, image }) => {
       try {
-        const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+        const baseUrl = getApiUrl();
         const authUrl = `${baseUrl.replace(/\/pets$/, "")}/auth/register`;
 
         const res = await fetch(authUrl, {
@@ -143,7 +144,7 @@ export const authClient = {
 
   signOut: async (options = {}) => {
     try {
-      const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+      const baseUrl = getApiUrl();
       const authUrl = `${baseUrl.replace(/\/pets$/, "")}/auth/logout`;
 
       await fetch(authUrl, {
