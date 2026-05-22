@@ -5,19 +5,6 @@ import { useState, useEffect } from "react";
 const listeners = new Set();
 const notifyListeners = () => listeners.forEach((l) => l());
 
-const getAuthBaseUrl = () => {
-  const rawUrl = process.env.NEXT_PUBLIC_API_URL;
-  if (rawUrl) {
-    return rawUrl.replace(/\/pets\/?$/, "");
-  }
-
-  if (typeof window !== "undefined") {
-    return window.location.origin;
-  }
-
-  return "";
-};
-
 export const authClient = {
   useSession: () => {
     const [session, setSession] = useState(null);
@@ -29,8 +16,8 @@ export const authClient = {
 
       const fetchSession = async () => {
         try {
-          const authBaseUrl = getAuthBaseUrl();
-          const authUrl = `${authBaseUrl}/auth/me`;
+          const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+          const authUrl = `${baseUrl.replace(/\/pets$/, "")}/auth/me`;
 
           const res = await fetch(authUrl, {
             headers: {
@@ -82,8 +69,8 @@ export const authClient = {
   signIn: {
     email: async ({ email, password }) => {
       try {
-        const authBaseUrl = getAuthBaseUrl();
-        const authUrl = `${authBaseUrl}/auth/login`;
+        const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+        const authUrl = `${baseUrl.replace(/\/pets$/, "")}/auth/login`;
 
         const res = await fetch(authUrl, {
           method: "POST",
@@ -113,8 +100,8 @@ export const authClient = {
       }
     },
     social: async ({ provider, callbackURL }) => {
-      const authBaseUrl = getAuthBaseUrl();
-      const redirectUrl = `${authBaseUrl}/auth/social/${provider}?callbackURL=${encodeURIComponent(callbackURL)}`;
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+      const redirectUrl = `${baseUrl.replace(/\/pets$/, "")}/auth/social/${provider}?callbackURL=${encodeURIComponent(callbackURL)}`;
       window.location.href = redirectUrl;
       return {};
     },
@@ -123,8 +110,8 @@ export const authClient = {
   signUp: {
     email: async ({ email, password, name, image }) => {
       try {
-        const authBaseUrl = getAuthBaseUrl();
-        const authUrl = `${authBaseUrl}/auth/register`;
+        const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+        const authUrl = `${baseUrl.replace(/\/pets$/, "")}/auth/register`;
 
         const res = await fetch(authUrl, {
           method: "POST",
@@ -156,8 +143,8 @@ export const authClient = {
 
   signOut: async (options = {}) => {
     try {
-      const authBaseUrl = getAuthBaseUrl();
-      const authUrl = `${authBaseUrl}/auth/logout`;
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+      const authUrl = `${baseUrl.replace(/\/pets$/, "")}/auth/logout`;
 
       await fetch(authUrl, {
         method: "POST",
